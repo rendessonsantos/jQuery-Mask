@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="jQuery-Mask-Plugin - Um plugin de jQuery para fazer máscaras de campo / A jQuery plugin to make field masks" />
+  <meta name="author" content="Rendesson Santos" />
+  <title>jQuery Mask Plugin - Um Plugin jQuery para fazer máscaras em campos de formulário e elementos html. / A jQuery Plugin to make masks in form fields and html elements.</title>
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/default.min.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'> -->
+  <!-- <link href='https://fonts.googleapis.com/css?family=Cabin+Condensed' rel='stylesheet' type='text/css'> -->
+  <style type="text/css">
+    * {font-family: 'Lato', sans-serif;}
+    .container {width:773px;}
+    h1 {margin-bottom:10px}
+    h1 .jq-label {font-size: 35px; color: #CFCFCF; display:block;margin:21px 2px 40px 13px;}
+    h1 .plugin-name {font-size:140px; color: #6BBEC7;}
+    span.subtitle {margin-bottom:20px;}
+    div#examples div.col {width:246px;float:left;}
+
+    div#examples div.col.center {text-align:center;}
+    div#examples div.col.center.banner {border: 1px solid #ccc; padding:15px; margin-top:24px;}
+
+    pre {overflow-x: auto; white-space:pre; word-wrap:normal; font-size:12px;}
+  </style>
+</head>
+<body>
+<div class="container">
+<h1><span class="jq-label">jQuery</span> <span class="plugin-name">Mask Plugin</span></h1>
+  <span class="subtitle">Um Plugin jQuery para fazer máscaras em campos de formulário e elementos html.</span> <br />
+    <span class="subtitle">Adaptado e reestruturado por <a href="https://rendessonsantos.github.io/">Rendesson Santos</a>.</span> <br /> <br />
+  <div id="code-samples">
+<h1>Documentação</h1>
+<h2>Exemplos de uso básico</h2>
+<pre>
+    $(document).ready(function(){
+      $('.date').mask('00/00/0000');
+      $('.time').mask('00:00:00');
+      $('.date_time').mask('00/00/0000 00:00:00');
+      $('.cep').mask('00000-000');
+      $('.phone').mask('0000-0000');
+      $('.phone_with_ddd').mask('(00) 0000-0000');
+      $('.phone_us').mask('(000) 000-0000');
+      $('.mixed').mask('AAA 000-S0S');
+      $('.cpf').mask('000.000.000-00', {reverse: true});
+      $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+      $('.money').mask('000.000.000.000.000,00', {reverse: true});
+      $('.money2').mask("#.##0,00", {reverse: true});
+      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+        translation: {
+          'Z': {
+            pattern: /[0-9]/, optional: true
+          }
+        }
+      });
+      $('.ip_address').mask('099.099.099.099');
+      $('.percent').mask('##0,00%', {reverse: true});
+      $('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
+      $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
+      $('.fallback').mask("00r00r0000", {
+          translation: {
+            'r': {
+              pattern: /[\/]/,
+              fallback: '/'
+            },
+            placeholder: "__/__/____"
+          }
+        });
+      $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
+    });
+</pre>
+
+<h3>Exemplos de retorno de chamada</h3>
+<pre>
+    var options =  {
+      onComplete: function(cep) {
+        alert('CEP Completed!:' + cep);
+      },
+      onKeyPress: function(cep, event, currentField, options){
+        console.log('An key was pressed!:', cep, ' event: ', event,
+                    'currentField: ', currentField, ' options: ', options);
+      },
+      onChange: function(cep){
+        console.log('cep changed! ', cep);
+      },
+      onInvalid: function(val, e, f, invalid, options){
+        var error = invalid[0];
+        console.log ("Digit: ", error.v, " is invalid for the position: ", error.p, ". We expect something like: ", error.e);
+      }
+    };
+
+    $('.cep_with_callback').mask('00000-000', options);
+</pre>
+
+<h3>Mudança de máscara on-the-fly</h3>
+<pre>
+    var options =  {onKeyPress: function(cep, e, field, options){
+      var masks = ['00000-000', '0-00-00-00'];
+        mask = (cep.length>7) ? masks[1] : masks[0];
+      $('.crazy_cep').mask(mask, options);
+    }};
+
+    $('.crazy_cep').mask('00000-000', options);
+</pre>
+
+<h3>Máscara como uma função</h3>
+<pre>
+    var SPMaskBehavior = function (val) {
+      return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+    },
+    spOptions = {
+      onKeyPress: function(val, e, field, options) {
+          field.mask(SPMaskBehavior.apply({}, arguments), options);
+        }
+    };
+
+    $('.sp_celphones').mask(SPMaskBehavior, spOptions);
+</pre>
+
+  <h3>Usando exemplos de notação de HTML</h3>
+Para obter sua máscara aplicada com o atributo de dados-máscara apenas usá-lo como da mesma forma que você usar com a função de .mask $. <br/> <br/>
+<pre>
+    &lt;input type=&quot;text&quot; name=&quot;field-name&quot; data-mask=&quot;00/00/0000&quot; /&gt;
+</pre>
+Ativando uma máscara reversível <br/> <br/>
+<pre>
+    &lt;input type=&quot;text&quot; name=&quot;field-name&quot; data-mask=&quot;00/00/0000&quot; data-mask-reverse=&quot;true&quot; /&gt;
+</pre>
+
+Usando a opção clearIfNotMatch <br/> <br/>
+<pre>
+    &lt;input type=&quot;text&quot; name=&quot;field-name&quot; data-mask=&quot;00/00/0000&quot; data-mask-clearifnotmatch=&quot;true&quot; /&gt;
+</pre>
+
+Usando a opção selectOnFocus <br/> <br/>
+<pre>
+    &lt;input type=&quot;text&quot; name=&quot;field-name&quot; data-mask=&quot;00/00/0000&quot; data-mask-selectonfocus=&quot;true&quot; /&gt;
+</pre>
+
+< br / >
+<h3>Tradução</h3>
+Ensinar a jQuery Mask Plugin como aplicar a máscara: <br/> <br/>
+<pre>
+    //agora o dígito 0 no seu padrão de máscara será interpretado
+    //como caracteres válidos como 0,1,2,3,4,5,6,7,8,9 e *
+    $('.your-field').mask('00/00/0000', {'translation': {0: {pattern: /[0-9*]/}}});
+</pre>
+
+Por padrão, o jQuery Mask Plugin reconizes apenas o dígito lógico (números e letras) e S (A-Za-z), mas
+Você pode estender ou modificar este comportamento dizendo para jQuery Mask Plugin como interpretar aqueles dígitos lógicos. <br/> <br/>
+<pre>
+    $('.your-field').mask('AA/SS/YYYY', {'translation': {
+            A: {pattern: /[A-Za-z0-9]/},
+            S: {pattern: /[A-Za-z]/},
+            Y: {pattern: /[0-9]/}
+          }
+    });
+</pre>
+
+Agora a jQuery Mask Plugin sabe o dígito de lógica Y e você pode criar seu próprio padrão. <br/> <br/>
+<h4>Opcionais dígitos</h4> <br/>
+Você também pode dizer para jQuery Mask qual dígito é opcional, para criar uma máscara IP por exemplo: <br/> <br/>
+<pre>
+    // 1ª forma
+    $('.ip_address').mask('099.099.099.099');
+    // 2ª forma
+    $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {translation:  {'Z': {pattern: /[0-9]/, optional: true}}});
+</pre>
+Agora, todos os dígitos de <strong>Z</strong> com suas máscaras é opcional. < br / > < br / >
+
+<h4>Recursiva dígitos</h4> <br/>
+
+Com jQuery Mask Plugin, você também pode definir padrões de recursiva dentro sua máscara: <br/> <br/>
+<pre>    $('.money_example').mask('#.##0,00', {reverse: true});</pre>
+Com o exemplo acima será colocada a máscara da direita para a esquerda (é por isso que reverse:true é definido). Assim que você começa a digitar, um "0,00" será aplicado seguido repetindo recursivamente o seguinte padrão "#. # #". O resultado poderia ser algo como: 1.234.567,890. < br / > < br / >
+
+Você também pode usar esse tipo de recurso para definir que tipo de dados pode ser digitado dentro de um campo:
+<pre>    $('.example').mask('0#');</pre>
+Agora, serão permitidos somente números dentro de seu campo de formulário. < br / > < br / >
+
+<h4>Dígitos de fallback</h4>
+
+Quando um usuário digita um caractere inválido para a posição atual, o plugin irá substituí-lo por seu retorno em vez de apagá-las.
+
+<pre>
+    $('.field_with_fallback').mask("00r00r0000", {
+      translation: {
+        'r': {
+          pattern: /[\/]/,
+          fallback: '/'
+        },
+        placeholder: "__/__/____"
+      }
+    });
+</pre>
+
+  < br / ><h3>removendo a máscara</h3>
+<pre>    $('.date').unmask();</pre>
+
+< br / ><h3>obtendo o valor digitado desmascarado</h3>
+<pre>    $('.date').cleanVal();</pre>
+
+< br / ><h3>obtendo um valor mascarado programaticamente</h3>
+<pre>    $('.date').masked('19840807');</pre>
+
+< br / >
+<h2>Personalização</h2>
+
+jQuery Mask Plugin tem algumas opções de padrão que você pode substituir como você gosta:
+<h3>Opções de campo</h3>
+<pre>
+    var custom_options = {
+      byPassKeys: [8, 9, 37, 38, 39, 40],
+      translation: {
+        '0': {pattern: /\d/},
+        '9': {pattern: /\d/, optional: true},
+        '#': {pattern: /\d/, recursive: true},
+        'A': {pattern: /[a-zA-Z0-9]/},
+        'S': {pattern: /[a-zA-Z]/}
+      };
+    };
+</pre>
+lista de <strong>byPassKeys</strong> de do teclado <a href="http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes" target="_blank"> keyCode</a> que deseja ser ignorado quando ele foi pressionado. < br / >
+objeto de <strong>tradução</strong> com todos os dígitos que devem ser interpretados como caracteres especiais e sua representação de regex. < br / > < br / >
+
+<h3>Métodos públicos</h3>
+<pre>
+    /**
+    * Aplica-se a máscara para os elementos correspondentes do seletor.
+    *
+    * @selector elementos de ser mascarado.
+    * @mask deve ser uma string ou uma função.
+    * @options deve ser um objeto.
+    **/
+    $(selector) .mask (mask [, options]);
+
+    /**
+    * Procurar e destruir.
+    *
+    * @selector elementos de ser mascarado.
+    **/
+    $(selector).unmask();
+
+    /**
+    * Obtém o valor do campo sem a máscara.
+    *
+    * @selector elementos de ser mascarado.
+    **/
+    $(selector).cleanVal();
+
+    /**
+    * Aplica-se a máscara para os elementos correspondentes do seletor.
+    *
+    * @selector opcional: elementos para ser mascarada. O comportamento padrão é para pesquisa para todos os elementos com o atributo de dados-máscara.
+    **/
+    $.applyDataMask([selector]);
+</pre>
+<h3>Opções globais</h3>
+<pre>
+    nonInput: elementos que consideramos nonInput
+    dataMask: podemos mascarar elementos dados máscara por padrão
+    watchInputs: assistir para entradas adicionadas dinamicamente por padrão
+    watchDataMask: por padrão, desabilitamos o observador para elementos adicionados dinamicamente dados máscara por padrão (razões de desempenho)
+    $.jMaskGlobals = {
+      maskElements: 'input,td,span,div',
+      dataMaskAttr: '*[data-mask]',
+      dataMask: true,
+      watchInterval: 300,
+      watchInputs: true,
+      watchDataMask: false,
+      byPassKeys: [9, 16, 17, 18, 36, 37, 38, 39, 40, 91],
+      translation: {
+          '0': {pattern: /\d/},
+          '9': {pattern: /\d/, optional: true},
+          '#': {pattern: /\d/, recursive: true},
+          'A': {pattern: /[a-zA-Z0-9]/},
+          'S': {pattern: /[a-zA-Z]/}
+      }
+    };
+</pre>
+    </div>
+
+  <br clear="all" />
+
+  </div>
+</body>
+</html>
