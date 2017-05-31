@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="description" content="jQuery-Mask-Plugin - Um plugin de jQuery para fazer máscaras de campo / A jQuery plugin to make field masks" />
   <meta name="author" content="Rendesson Santos" />
-  <title>jQuery Mask Plugin - Um Plugin jQuery para fazer máscaras em campos de formulário e elementos html. / A jQuery Plugin to make masks in form fields and html elements.</title>
+  <title>jQuery Mask - jQuery para fazer máscaras em campos de formulário e elementos html. / jQuery to make masks in form fields and html elements.</title>
 
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen">
   <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/default.min.css">
@@ -29,9 +29,9 @@
 </head>
 <body>
   <div class="container">
-  <h1><span class="jq-label">jQuery</span> <span class="plugin-name">Mask Plugin</span></h1>
-  <span class="subtitle">Um Plugin jQuery para fazer máscaras em campos de formulário e elementos html.</span> <br />
-  <span class="subtitle">A jQuery Plugin to make masks in form fields and html elements.</span> <br /> <br />
+  <h1><span class="jq-label">jQuery</span> <span class="plugin-name">Mask</span></h1>
+  <span class="subtitle">jQuery para fazer máscaras em campos de formulário e elementos html.</span> <br />
+  <span class="subtitle">A jQuery to make masks in form fields and html elements.</span> <br /> <br />
 
   <!-- Place this tag where you want the button to render. -->
   <a class="github-button" href="https://github.com/rendessonsantos/jQuery-Mask-Plugin" data-icon="octicon-star" data-style="mega" data-count-href="/rendessonsantos/jQuery-Mask-Plugin/stargazers" data-count-api="/repos/rendessonsantos/jQuery-Mask-Plugin#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star rendessonsantos/jQuery-Mask-Plugin on GitHub">Star</a>&nbsp;
@@ -83,9 +83,9 @@
       <input type="text" class="selectonfocus"/>
     </div>
     <div class="col center banner">
-    <h4>jQuery Mask Plugin</h4>
-      <p>O <a href="https://rendessonsantos.github.com/jQuery-Mask-Plugin/">jQuery Mask Plugin</a> foi adaptado por <a href="http://www.rendessonsantos.rvcompany.com.br/" rel="author" target="_blank">Rendesson Santos</a> e o código fonte está disponível no <a href="https://github.com/rendessonsantos/jQuery-Mask-Plugin" target="_blank">GitHub</a>.</p>
-      <p>The <a href="https://rendessonsantos.github.com/jQuery-Mask-Plugin/">jQuery Mask Plugin</a> was adapted by <a href="http://www.rendessonsantos.rvcompany.com.br/" rel="author" target="_blank">Rendesson Santos</a> and the source-code's available in <a href="https://github.com/rendessonsantos/jQuery-Mask-Plugin" target="_blank">GitHub</a>.</p>
+    <h4>jQuery Mask</h4>
+      <p>O <a href="https://rendessonsantos.github.com/jQuery-Mask/">O jQuery Mask</a> foi adaptado por <a href="http://www.rendessonsantos.rvcompany.com.br/" rel="author" target="_blank">Rendesson Santos</a> e o código fonte está disponível no <a href="https://github.com/rendessonsantos/jQuery-Mask-Plugin" target="_blank">GitHub</a>.</p>
+      <p>The <a href="https://rendessonsantos.github.com/jQuery-Mask/">O jQuery Mask</a> was adapted by <a href="http://www.rendessonsantos.rvcompany.com.br/" rel="author" target="_blank">Rendesson Santos</a> and the source-code's available in <a href="https://github.com/rendessonsantos/jQuery-Mask-Plugin" target="_blank">GitHub</a>.</p>
       <br>
       <p>Acesse a versão anterior clicando <a href="https://jsfiddle.net/rvpsantos/n26f8dwz/15/" target="_black">aqui</a>. <br>
       Access to previous version by clicking <a href="https://jsfiddle.net/rvpsantos/n26f8dwz/15/" target="_black">here</a>.</p>
