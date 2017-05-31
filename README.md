@@ -1,21 +1,21 @@
 # Mascara Input
 
-M·scaras de formataÁ„o de campos HTML5.
+M√°scaras de formata√ß√£o de campos HTML5.
 
 
 
 # Desenvolvimento
 
-Este Script È uma adaptaÁ„o feita por Rendesson Santos com base no script desenvolvido por Igor Escobar e hospedado no GitHub.
+Este Script √© uma adapta√ß√£o feita por Rendesson Santos com base no script desenvolvido por Igor Escobar e outros scripts encontrados em pesquisas √† fundo dentro do conceito e hospedado no GitHub.
 
 
 
 # Adentro
 
-CUIDADO! Qualquer alteraÁ„o feita no script jquery.mask.min.js na pasta js pode ocasionar o n„o funcionamento ou funcionamento defazado do mesmo, este script È respons·vel por processar e realizar a formataÁ„o por m·scara nos campos input do formul·rio.
+CUIDADO! Qualquer altera√ß√£o feita no script jquery.mask.min.js na pasta js pode ocasionar o n√£o funcionamento ou funcionamento defazado do mesmo, este script √© respons√°vel por processar e realizar a formata√ß√£o por m√°scara nos campos input do formul√°rio.
 
-# DemonstraÁ„o
-https://rendessonsantos.github.io/jQuery-Mask-Plugin
+# Demonstra√ß√£o
+https://rendessonsantos.github.io/jQuery-Mask
 
-# Vers„o anterior
+# Vers√£o anterior
 https://jsfiddle.net/rvpsantos/n26f8dwz/15/
